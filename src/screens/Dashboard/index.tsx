@@ -29,7 +29,6 @@ export function Dashboard() {
   function handleAddRepository() {
     addRepository(inputText);
     setInputText("");
-
     inputRef.current?.blur();
   }
 
@@ -50,7 +49,7 @@ export function Dashboard() {
               ref={inputRef}
               placeholder="Digite aqui 'usuário/repositório'"
               value={inputText}
-              onChange={(text) => setInputText(text.nativeEvent.text)}
+              onChangeText={(text) => setInputText(text)}
               onSubmitEditing={handleAddRepository}
               returnKeyType="send"
               autoCapitalize="none"
@@ -60,7 +59,8 @@ export function Dashboard() {
             <InputButton
               testID="input-button"
               onPress={handleAddRepository}
-              disabled={inputText.trim() === ""}
+              // disabled={inputText === "" ? true : false}
+              disabled={inputText.length ? false : true}
             >
               <Icon name="search" size={20} />
             </InputButton>
